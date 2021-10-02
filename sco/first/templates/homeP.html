@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>{{class}}</title>
+</head>
+<body>
+<font size=7>
+    <center>{{class}}</center>
+</font>
+<div style="line-height:30px;
+    background-color:#eeeeee;
+    width:600px;
+    float:left;
+    padding:5px;">
+    {% if level == "super" %}
+        <div style="line-height:30px;
+        background-color:#eeeeee;
+        width:600px;
+        height:70px;
+        float:left;
+        overflow:scroll;
+        padding:5px;">
+            <form name='inp' action='' method='post'>
+            {% for ii in allClass %}
+                <input type='submit' value={{ii.0}} name='cla' style='width:100px;height:40px;background-color:#A0A0A0'>
+            {% endfor %}
+                <input name="people" type="hidden" value={{get}}> 
+                
+                <input name="lev" type="hidden" value={{level}}>
+            </form>
+        </div>
+    {% endif %}
+    <form name='inp' action='' method='post'>
+    {% for i in data %}
+        {% if i == get %}
+            <input type='submit' value={{i}} name='people' style='width:600px;height:28px;background-color:#A0A0A0'>
+        {% else %}
+            <input type='submit' value={{i}} name='people' style='width:600px;height:28px;background-color:#FFFFFF'>
+        {% endif %}
+        
+        <br>
+    {% endfor %}
+        <input name="cla" type="hidden" value={{class}}>
+        <input name="lev" type="hidden" value={{level}}>
+    </form>
+</div>
+<div style="line-height:30px;
+    background-color:#FFFFFF;
+    width:500px;
+    float:right;
+    padding:5px;">
+    {% if get != '' %}
+        <center>
+            <font size=5>{{get}}</font>
+            <form name='input' action='' method='post' >
+
+                输入想要改变的分数:<input type='number' name='score' style='width:200px;height:28px;background-color:#D0D0D0'><br>
+                <input name="people" type="hidden" value={{get}}> <br>
+                <input name="cla" type="hidden" value={{class}}>
+                <input name="lev" type="hidden" value={{level}}>
+                输入原因:<input type='text' name='reason' style='width:280px;height:28px;background-color:#D0D0D0'><br>
+                <input type='submit' value=提交 name='send' style='width:50px;height:28px;background-color:#AFAFAF'>
+            </form>
+        </center>
+    {% endif %}
+</div>
+
+<div style="
+    background-color:#eeeeee;
+    width:600px;
+    height:240px;
+    float:right;
+    overflow:scroll;
+    padding:5px;">
+    <form name='delete' action='' method='post'>
+        {% for ii in log %}
+            <p><input type="checkbox" name="numid" value={{ii.1}} />{{ii.0}}</p>
+        {% endfor %}
+        <input name="people" type="hidden" value={{get}}> 
+        <input name="cla" type="hidden" value={{class}}>
+        <input name="lev" type="hidden" value={{level}}>
+        <center><input type='submit' value=Delete name='send' style='width:50px;height:28px;background-color:#AFAFAF'></center>
+    </form>
+</div>
+<div style="
+    background-color:#FFFFFF;
+    width:600px;
+    height:50px;
+    float:right;
+    padding:5px;">
+    <form name='csv' action='' method='post'>
+        <input name="people" type="hidden" value={{get}}> 
+        <input name="cla" type="hidden" value={{class}}>
+        <input name="lev" type="hidden" value={{level}}>
+        <center><input type='submit' value='Get all student csv' name='send' style='width:150px;height:28px;background-color:#AFAFAF'></center>
+    </form>
+</div>
+</body>
+</html>
